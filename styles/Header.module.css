@@ -1,0 +1,39 @@
+.userBanner {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  background: #2d2d2d;
+  color: #eee;
+  padding: 0.5rem 1rem;
+}
+
+.userInfo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userRole {
+  background: var(--role-bg, #4a4a4a);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+/* Thème clair */
+.lightLayout .userBanner {
+  --banner-bg: #f5f5f5;
+  --banner-text: #333333;
+  --role-bg: #e0e0e0;
+}
+
+/* Thème sombre */
+.darkLayout .userBanner {
+  --banner-bg: #2d2d2d;
+  --banner-text: #ffffff;
+  --role-bg: #4a4a4a;
+}

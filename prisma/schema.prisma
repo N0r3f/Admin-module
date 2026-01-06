@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String      @id @default(uuid())
+  username      String      @unique
+  password      String
+  name          String?
+  role          String      @default("USER")
+  lastLogin     DateTime?
+  lastAction    UserAction? @relation(fields: [lastActionId], references: [id])
+  lastActionId  String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  actions       UserAction[] @relation("UserActions")
+}
+
+model UserAction {
+  id          String    @id @default(uuid())
+  userId      String
+  actionType  String
+  details     String?
+  timestamp   DateTime  @default(now())
+  user        User      @relation("UserActions", fields: [userId], references: [id])
+  usersWithLastAction User[]
+}
